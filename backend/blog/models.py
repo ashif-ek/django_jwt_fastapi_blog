@@ -6,13 +6,13 @@ User = get_user_model()
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to="posts/", null=True, blank=True)
     slug = models.SlugField(unique=True, max_length=255, blank=True)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
     published = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to="posts/", null=True, blank=True)
 
 
     class Meta:

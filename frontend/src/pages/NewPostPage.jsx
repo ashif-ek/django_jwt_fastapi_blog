@@ -14,6 +14,7 @@ export default function NewPostPage() {
       const { data } = await api.post("posts/", {
         title: form.title,
         content: form.content,
+        image: form.image,
       });
       navigate(`/posts/${data.id}`);
     } catch (err) {
@@ -39,6 +40,12 @@ export default function NewPostPage() {
           <label className="block text-sm font-medium text-gray-800 mb-1">
             Title
           </label>
+          <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setForm({ ...form, image: e.target.files[0] })}
+        />
+
           <input
             className="w-full rounded-md border border-gray-300 px-4 py-2 text-sm text-gray-900 shadow-sm focus:border-blue-700 focus:ring-blue-700"
             value={form.title}
